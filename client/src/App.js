@@ -68,27 +68,65 @@ function App() {
       <h1>CRUD Application</h1>
       <div className="form-container">
         <label htmlFor="movieName">Movie name</label>
-        <input type="text" name='movieName' autoFocus required onChange={(event)=>{setMovieName(event.target.value)}}/>
+        <input
+          type="text"
+          name="movieName"
+          autoFocus
+          required
+          onChange={(event) => {
+            setMovieName(event.target.value);
+          }}
+        />
         <label htmlFor="movieReview">Movie review</label>
-        <input type="text" name="movieReview" required onChange={(event)=>{setMovieReview(event.target.value)}}/>
-        <button onClick={submitReview}>Submit</button>
+        <input
+          type="text"
+          name="movieReview"
+          required
+          onChange={(event) => {
+            setMovieReview(event.target.value);
+          }}
+        />
+        {movieName.length && movieReview.length ? (
+          <button onClick={submitReview}>Submit</button>
+        ) : (
+          <span className='validation-msg'>Fill in the fields please!</span>
+        )}
 
-        {movieList.map((val)=>{
+        {movieList.map((val, index) => {
           return (
-            <>
-              <div className="card-container">
-                <h2>{val.movie_name}</h2>
-                <p>{val.movie_review}</p>
-                <button id='btn-delete' onClick={()=>{deleteReview(val.movie_name)}}>Delete</button>
-                <input type="text" name="updatedReview" placeholder='New review...' onChange={(e)=>{setUpdatedReview(e.target.value)}}/>
-                <button id='btn-update' onClick={()=>{updateReview(val.movie_name)}}>Update</button>
-              </div>
-            </>
+            <div key={index} className="card-container">
+              <h2>{val.movie_name}</h2>
+              <p>{val.movie_review}</p>
+              <button
+                id="btn-delete"
+                onClick={() => {
+                  deleteReview(val.movie_name);
+                }}
+              >
+                Delete
+              </button>
+              <input
+                type="text"
+                name="updatedReview"
+                placeholder="New review..."
+                onChange={(e) => {
+                  setUpdatedReview(e.target.value);
+                }}
+              />
+              <button
+                id="btn-update"
+                onClick={() => {
+                  updateReview(val.movie_name);
+                }}
+              >
+                Update
+              </button>
+            </div>
           );
         })}
       </div>
     </div>
-  )
+  );
 }
 
 export default App;

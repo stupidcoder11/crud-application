@@ -76,3 +76,8 @@
   background: #B2B1B9;
   background: linear-gradient(to bottom, #B2B1B9, #6e6d73);
 }
+
+.form-container .validation-msg {
+  color:#E40017;
+  font-size: 24px;
+}
